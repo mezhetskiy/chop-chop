@@ -1,0 +1,121 @@
+[gd_scene load_steps=16 format=3 uid="uid://ddw1dbu811del"]
+
+[ext_resource type="Script" uid="uid://ds3cx14lddksi" path="res://scripts/testbonfire.gd" id="1_61vbk"]
+[ext_resource type="Texture2D" uid="uid://cf71p2yw8fl7t" path="res://assets/other/bonfire-Sheet-export.png" id="2_qtnrf"]
+[ext_resource type="Texture2D" uid="uid://dltx5o16udrbj" path="res://assets/other/bonfire.png" id="3_jkn02"]
+[ext_resource type="PackedScene" uid="uid://dnrxb6nedacmr" path="res://scenes/testscenes/test_progress_bar.tscn" id="5_61vbk"]
+[ext_resource type="AudioStream" uid="uid://77mtmldcpk5y" path="res://assets/sounds/campfire.ogg" id="5_qltfv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvy3k"]
+atlas = ExtResource("2_qtnrf")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mjsnc"]
+atlas = ExtResource("2_qtnrf")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkkp7"]
+atlas = ExtResource("2_qtnrf")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqwxp"]
+atlas = ExtResource("2_qtnrf")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_biy7p"]
+atlas = ExtResource("2_qtnrf")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af0on"]
+atlas = ExtResource("2_qtnrf")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0evb8"]
+atlas = ExtResource("3_jkn02")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wftjl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvy3k")
+}],
+"loop": false,
+"name": &"death",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mjsnc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkkp7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqwxp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_biy7p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af0on")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0evb8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_knvg4"]
+radius = 3.16228
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4fgjc"]
+radius = 13.0
+
+[node name="bonfire" type="StaticBody2D" groups=["campfires"]]
+y_sort_enabled = true
+script = ExtResource("1_61vbk")
+burn_duration = 60.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wftjl")
+animation = &"death"
+autoplay = "idle"
+offset = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_knvg4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_4fgjc")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+y_sort_enabled = true
+stream = ExtResource("5_qltfv")
+volume_db = -24.0
+autoplay = true
+max_distance = 200.0
+bus = &"SFX"
+
+[node name="Hint" type="Label" parent="."]
+visible = false
+texture_filter = 1
+offset_left = -50.0
+offset_top = -35.0
+offset_right = 50.0
+offset_bottom = -12.0
+theme_override_font_sizes/font_size = 12
+text = "Press E to put log"
+
+[node name="TestProgressBar" parent="." instance=ExtResource("5_61vbk")]
+offset_top = -20.0
+offset_right = 81.0
+offset_bottom = -4.0
+scale = Vector2(0.3, 0.3)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=3 uid="uid://3agte45detxp"]
+
+[ext_resource type="Script" uid="uid://cfbfceurob834" path="res://scripts/tree.gd" id="1_gc1iq"]
+[ext_resource type="Texture2D" uid="uid://cb6mgk532eojs" path="res://assets/Tree/Common/birch_tree_animation.png" id="2_6tuia"]
+[ext_resource type="AudioStream" uid="uid://dk56if8jf2slg" path="res://scenes/trees/chop.wav" id="3_yi2hd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgxr2"]
+atlas = ExtResource("2_6tuia")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npx1m"]
+atlas = ExtResource("2_6tuia")
+region = Rect2(32, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l76ii"]
+atlas = ExtResource("2_6tuia")
+region = Rect2(64, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t2b2"]
+atlas = ExtResource("2_6tuia")
+region = Rect2(96, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33mna"]
+atlas = ExtResource("2_6tuia")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxqoy"]
+atlas = ExtResource("2_6tuia")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71ggm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgxr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npx1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l76ii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0t2b2")
+}],
+"loop": false,
+"name": &"chop",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33mna")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxqoy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yvdcb"]
+radius = 3.16228
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ye5wk"]
+radius = 11.0
+
+[node name="BirchTree" type="StaticBody2D" groups=["trees"]]
+y_sort_enabled = true
+script = ExtResource("1_gc1iq")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_71ggm")
+animation = &"chop"
+autoplay = "idle"
+offset = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+shape = SubResource("CircleShape2D_yvdcb")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_ye5wk")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yi2hd")
+volume_db = -15.0
+
+[node name="Timer" type="Timer" parent="."]

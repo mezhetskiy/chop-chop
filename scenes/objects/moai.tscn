@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dily0e2v3i1hy"]
+
+[ext_resource type="Texture2D" uid="uid://cmvgh4b0l7pto" path="res://assets/other/Moai.png" id="1_b1mod"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_00y01"]
+radius = 3.16228
+
+[node name="moai" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = ExtResource("1_b1mod")
+offset = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+shape = SubResource("CircleShape2D_00y01")

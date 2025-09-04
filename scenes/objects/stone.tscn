@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcdm7n0ilfapu"]
+
+[ext_resource type="Texture2D" uid="uid://b4ik5ve5desil" path="res://assets/other/Stones Summer.png" id="1_kxjt8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hxrs0"]
+radius = 4.0
+
+[node name="stone" type="StaticBody2D"]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kxjt8")
+region_enabled = true
+region_rect = Rect2(32, 80, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_hxrs0")

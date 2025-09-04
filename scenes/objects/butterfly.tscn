@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://dmpcasjri5bhb"]
+
+[ext_resource type="Texture2D" uid="uid://djwxflke8jkcq" path="res://assets/other/Butterflies.png" id="1_4ki4n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ki4n"]
+atlas = ExtResource("1_4ki4n")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tq3rt"]
+atlas = ExtResource("1_4ki4n")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o654m"]
+atlas = ExtResource("1_4ki4n")
+region = Rect2(32, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yym88"]
+atlas = ExtResource("1_4ki4n")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42pi4"]
+atlas = ExtResource("1_4ki4n")
+region = Rect2(64, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6q6t"]
+atlas = ExtResource("1_4ki4n")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rpr2g"]
+atlas = ExtResource("1_4ki4n")
+region = Rect2(96, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1oym5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ki4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tq3rt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o654m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yym88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42pi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6q6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rpr2g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="butterfly" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_1oym5")
+autoplay = "default"
+frame_progress = 0.245812

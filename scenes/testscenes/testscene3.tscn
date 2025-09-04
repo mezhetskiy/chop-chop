@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=3 uid="uid://tcpwml5pv0v5"]
+
+[ext_resource type="PackedScene" uid="uid://bxsava0kac1jn" path="res://scenes/trees/birch_tree.tscn" id="1_ifaai"]
+[ext_resource type="PackedScene" uid="uid://bmqnpd8pwnq8w" path="res://scenes/trees/mahogany_tree.tscn" id="2_po8ly"]
+[ext_resource type="PackedScene" uid="uid://5qox1buegb3p" path="res://scenes/trees/maple_tree.tscn" id="3_q4vj5"]
+[ext_resource type="PackedScene" uid="uid://budsajbcegmaj" path="res://scenes/trees/pine_tree.tscn" id="4_cy4ef"]
+[ext_resource type="PackedScene" uid="uid://dr3hm8awxl7nt" path="res://scenes/characters/player.tscn" id="5_fbv76"]
+[ext_resource type="PackedScene" uid="uid://c11uw0kk2l20o" path="res://scenes/ui/hint_ui.tscn" id="7_742kv"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BirchTree" parent="." instance=ExtResource("1_ifaai")]
+position = Vector2(123, 103)
+
+[node name="mahogany_tree" parent="." instance=ExtResource("2_po8ly")]
+position = Vector2(216, 90)
+
+[node name="maple_tree" parent="." instance=ExtResource("3_q4vj5")]
+position = Vector2(156, 177)
+
+[node name="pine_tree" parent="." instance=ExtResource("4_cy4ef")]
+position = Vector2(255, 150)
+
+[node name="Player" parent="." instance=ExtResource("5_fbv76")]
+position = Vector2(171, 114)
+
+[node name="HintUI" parent="." instance=ExtResource("7_742kv")]
